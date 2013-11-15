@@ -29,7 +29,7 @@ OAUTH_TOKEN_SECRET = final_step['oauth_token_secret']
 
 # Get timeline
 twitter = Twython(app_key, app_secret, OAUTH_TOKEN, OAUTH_TOKEN_SECRET)
-timeline = twitter.get_user_timeline()
+timeline = twitter.get_user_timeline(count=200)
 
 for status in timeline:
     print status['text']
