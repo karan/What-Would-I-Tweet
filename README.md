@@ -6,11 +6,18 @@ A tweet generator (playing with twitter's API)
 Usage
 ======
 
+Get your `app_key` and `app_secret` from [Twitter Dev Center](https://dev.twitter.com/apps/new).
+
 Create `settings.cfg` with the following content:
 
     [auth]
     app_key=xxxxxxxxxxxxxx
     app_secret=xxxxxxxxxxxxxxxxxxxxxxxxxx
+
+Run the script:
+
+    $ python gen.py
+
 
 # Notebook:
 
