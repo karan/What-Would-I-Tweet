@@ -5,7 +5,8 @@ import webbrowser
 import re
 from collections import defaultdict
 from collections import Counter
-from random import randint
+from random import choice
+import operator
 
 from twython import Twython
 
@@ -46,7 +47,7 @@ timeline = twitter.get_user_timeline(count=200)
 data = defaultdict(lambda: defaultdict(int)) # {pos: {word: count}}
 word_count = [] # store the word count of each tweet
 
-ignore_pattern = re.compile(r'http|[@#][A-Za-z0-9]+')
+ignore_pattern = re.compile(r'http|[@#][_A-Za-z0-9]+|RT|MT')
 
 for status in timeline: # for each status
     words = 0
@@ -56,10 +57,17 @@ for status in timeline: # for each status
             words += 1
     word_count.append(words)
 
-
 #-- Generate tweet --#
 # 5 most common tweet lengths
-possible_tweet_lengths = Counter(word_count).most_common(5) # list of tuples
+possible_tweet_lengths = [c[0] for c in Counter(word_count).most_common(5)]
 
-length = randint(possible_tweet_lengths[0][0], possible_tweet_lengths[-1],[0])
+length = choice(possible_tweet_lengths)
 
+chosen_words = []
+for i in range(length):
+    words = data[i] # get {word: count} for position
+    chosen_words.append(
+        sorted(words.iteritems(), key=operator.itemgetter(1), reverse=True)[0][0]
+    )
+    
+print " ".join(chosen_words)
