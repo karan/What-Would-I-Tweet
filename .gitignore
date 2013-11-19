@@ -40,3 +40,4 @@ nosetests.xml
 *.komodoproject
 
 *.cfg
+.DS_Store
