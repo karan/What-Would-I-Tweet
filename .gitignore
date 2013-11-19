@@ -39,4 +39,4 @@ nosetests.xml
 .komodotools/
 *.komodoproject
 
-settings.cfg
+*.cfg
