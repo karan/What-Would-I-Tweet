@@ -2,16 +2,42 @@
 
 import ConfigParser
 import webbrowser
-import re
 from collections import defaultdict
-from collections import Counter
-from random import choice
-import operator
+import random
 
 from twython import Twython
 
 
 TOKEN_FILE = 'tokens.cfg'
+
+class Generate(object):
+    def __init__(self, statuses):
+        self.words = []
+        for status in statuses:
+            self.words.extend(status.split())
+        print self.words
+        self.num_words = len(self.words)
+        self.tokens = defaultdict(list)
+        self.triples()
+    
+    def triples(self):
+        if self.num_words < 3: return
+        for i in xrange(self.num_words - 2):
+            key = self.words[i], self.words[i + 1]
+            next_word = self.words[i + 2]
+            self.tokens[key].append(next_word)
+    
+    def generate(self, size=6):
+        seed_num = random.randint(0, self.num_words - 3)
+        w1, w2 = self.words[seed_num], self.words[seed_num + 1]
+        gen_words = []
+        
+        for i in xrange(size):
+            gen_words.append(w1)
+            w1, w2 = w2, random.choice(self.tokens[(w1, w2)])
+        gen_words.append(w2)
+        return ' '.join(gen_words)
+
 
 def get_tokens():
     config = ConfigParser.RawConfigParser()
@@ -60,34 +86,13 @@ except IOError:
 
 #-- Tweet data --#
 # Get timeline
+print 'getting stuff'
 twitter = Twython(app_key, app_secret, OAUTH_TOKEN, OAUTH_TOKEN_SECRET)
 timeline = twitter.get_user_timeline(count=200)
+print 'found %d statuses' % len(timeline)
+statuses = [status['text'] for status in timeline]
 
-# start splitting the statuses
-data = defaultdict(lambda: defaultdict(int)) # {pos: {word: count}}
-word_count = [] # store the word count of each tweet
+g = Generate(statuses)
 
-ignore_pattern = re.compile(r'http|[@#][_A-Za-z0-9]+|RT|MT')
-
-for status in timeline: # for each status
-    words = 0
-    for pos, word in enumerate(status['text'].split()): # for each word
-        if not bool(ignore_pattern.search(word)):
-            data[pos][word] += 1
-            words += 1
-    word_count.append(words)
-
-#-- Generate tweet --#
-# 5 most common tweet lengths
-possible_tweet_lengths = [c[0] for c in Counter(word_count).most_common(5)]
-
-length = choice(possible_tweet_lengths)
-
-chosen_words = []
-for i in range(length):
-    words = data[i] # get {word: count} for position
-    chosen_words.append(
-        sorted(words.iteritems(), key=operator.itemgetter(1), reverse=True)[0][0]
-    )
-    
-print " ".join(chosen_words)
+for i in range(10):
+    print g.generate(size=random.randint(0, 10))
