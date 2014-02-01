@@ -7,10 +7,38 @@ import random
 import re
 
 from twython import Twython
-import flask
+from flask import Flask, jsonify, make_response, render_template, redirect, request
+
+app = Flask(__name__)
+app.jinja_env.add_extension('pyjade.ext.jinja.PyJadeExtension')
 
 
-TOKEN_FILE = 'tokens.cfg'
+@app.route('/', methods=['GET'])
+def index():
+    return render_template('index.jade')
+
+@app.route('/do', methods=['POST'])
+def do():
+    config = ConfigParser.RawConfigParser()
+    config.read('settings.cfg')
+    app_key = config.get('auth', 'app_key')
+    app_secret = config.get('auth', 'app_secret')
+
+    twitter = Twython(app_key, app_secret)
+    timeline = twitter.get_user_timeline(screen_name=request.form['screen_name'], count=200)
+    statuses = [status['text'] for status in timeline]
+
+    return jsonify({"do": statuses})
+    '''g = Generate(statuses)
+
+    for i in range(10):
+        print g.generate(size=random.randint(6, 10))
+    '''
+
+
+if __name__ == '__main__':
+    app.run(debug=True)
+
 
 class Generate(object):
     '''
@@ -59,67 +87,3 @@ class Generate(object):
         gen_words.append(w2)
         return ' '.join(gen_words)
 
-
-def get_tokens():
-    '''
-    Returns twitter authentication tokens for an acccount.
-    '''
-    config = ConfigParser.RawConfigParser()
-    config.read(TOKEN_FILE)
-    return config.get('OAUTH', 'OAUTH_TOKEN'), config.get('OAUTH', 'OAUTH_TOKEN_SECRET')
-
-def load_keys():
-    '''
-    get twitter api keys from saved file
-    '''
-    pass
-
-config = ConfigParser.RawConfigParser()
-config.read('settings.cfg')
-app_key = config.get('auth', 'app_key')
-app_secret = config.get('auth', 'app_secret')
-
-OAUTH_TOKEN, OAUTH_TOKEN_SECRET = '', ''
-
-try:
-   with open(TOKEN_FILE):
-       OAUTH_TOKEN, OAUTH_TOKEN_SECRET = get_tokens()
-except IOError:
-    # could not get keys from file
-    
-    # Auth
-    twitter = Twython(app_key, app_secret)
-    auth = twitter.get_authentication_tokens()
-    
-    OAUTH_TOKEN = auth['oauth_token']
-    OAUTH_TOKEN_SECRET = auth['oauth_token_secret']
-    
-    # send user to auth URL in a new tab
-    webbrowser.open(auth['auth_url'], new=2)
-    
-    # final step of auth - change for web app
-    twitter = Twython(app_key, app_secret, OAUTH_TOKEN, OAUTH_TOKEN_SECRET)
-    pin = raw_input('Enter PIN from twitter: ')
-    final_step = twitter.get_authorized_tokens(pin)
-    OAUTH_TOKEN = final_step['oauth_token']
-    OAUTH_TOKEN_SECRET = final_step['oauth_token_secret']
-    
-    # Save tokens
-    config = ConfigParser.RawConfigParser()
-    config.add_section('OAUTH')
-    config.set('OAUTH', 'OAUTH_TOKEN_SECRET', OAUTH_TOKEN_SECRET)
-    config.set('OAUTH', 'OAUTH_TOKEN', OAUTH_TOKEN)
-    with open(TOKEN_FILE, 'wb') as configfile:
-        config.write(configfile)
-
-
-#-- Tweet data --#
-# Get timeline
-twitter = Twython(app_key, app_secret, OAUTH_TOKEN, OAUTH_TOKEN_SECRET)
-timeline = twitter.get_user_timeline(count=200)
-statuses = [status['text'] for status in timeline]
-
-g = Generate(statuses)
-
-for i in range(10):
-    print g.generate(size=random.randint(6, 10))
