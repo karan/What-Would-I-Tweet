@@ -7,6 +7,7 @@ import random
 import re
 
 from twython import Twython
+import flask
 
 
 TOKEN_FILE = 'tokens.cfg'
@@ -61,18 +62,23 @@ class Generate(object):
 
 def get_tokens():
     '''
-    Returns twitter authentication tokens.
+    Returns twitter authentication tokens for an acccount.
     '''
     config = ConfigParser.RawConfigParser()
     config.read(TOKEN_FILE)
     return config.get('OAUTH', 'OAUTH_TOKEN'), config.get('OAUTH', 'OAUTH_TOKEN_SECRET')
 
-#-- Twitter Oauth --#
-# get twitter api keys from saved file
+def load_keys():
+    '''
+    get twitter api keys from saved file
+    '''
+    pass
+
 config = ConfigParser.RawConfigParser()
 config.read('settings.cfg')
 app_key = config.get('auth', 'app_key')
 app_secret = config.get('auth', 'app_secret')
+
 OAUTH_TOKEN, OAUTH_TOKEN_SECRET = '', ''
 
 try:
