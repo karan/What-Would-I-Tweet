@@ -7,37 +7,10 @@ import random
 import re
 
 from twython import Twython
-from flask import Flask, jsonify, make_response, render_template, redirect, request
+from flask import Flask, jsonify, render_template, request
 
 app = Flask(__name__)
 app.jinja_env.add_extension('pyjade.ext.jinja.PyJadeExtension')
-
-
-@app.route('/', methods=['GET'])
-def index():
-    return render_template('index.jade')
-
-@app.route('/do', methods=['POST'])
-def do():
-    config = ConfigParser.RawConfigParser()
-    config.read('settings.cfg')
-    app_key = config.get('auth', 'app_key')
-    app_secret = config.get('auth', 'app_secret')
-
-    twitter = Twython(app_key, app_secret)
-    timeline = twitter.get_user_timeline(screen_name=request.form['screen_name'], count=200)
-    statuses = [status['text'] for status in timeline]
-
-    return jsonify({"do": statuses})
-    '''g = Generate(statuses)
-
-    for i in range(10):
-        print g.generate(size=random.randint(6, 10))
-    '''
-
-
-if __name__ == '__main__':
-    app.run(debug=True)
 
 
 class Generate(object):
@@ -83,7 +56,38 @@ class Generate(object):
         
         for i in xrange(size):
             gen_words.append(w1) # add w1
+            if self.tokens[(w1, w2)] == []:
+                break
             w1, w2 = w2, random.choice(self.tokens[(w1, w2)]) # get a random w3 from list mapped to by (w1, w2)
         gen_words.append(w2)
         return ' '.join(gen_words)
 
+
+@app.route('/', methods=['GET'])
+def index():
+    return render_template('index.jade')
+
+@app.route('/get_tweets', methods=['POST'])
+def do():
+    config = ConfigParser.RawConfigParser()
+    config.read('settings.cfg')
+    app_key = config.get('auth', 'app_key')
+    app_secret = config.get('auth', 'app_secret')
+
+    screen_name = request.form['screen_name']
+    twitter = Twython(app_key, app_secret)
+    timeline = twitter.get_user_timeline(screen_name=screen_name, count=200)
+    statuses = [status['text'] for status in timeline]
+
+    g = Generate(statuses)
+
+    final = []
+
+    for i in range(20):
+        final.append(g.generate(size=random.randint(7, 10)))
+    
+    return jsonify({screen_name: final})
+
+
+if __name__ == '__main__':
+    app.run(debug=True)
