@@ -65,16 +65,16 @@ class Generate(object):
 
 @app.route('/', methods=['GET'])
 def index():
-    return render_template('index.jade')
+    return render_template('index.html')
 
-@app.route('/get_tweets', methods=['POST'])
-def do():
+@app.route('/get_tweets/<screen_name>', methods=['GET'])
+def do(screen_name):
     config = ConfigParser.RawConfigParser()
     config.read('settings.cfg')
     app_key = config.get('auth', 'app_key')
     app_secret = config.get('auth', 'app_secret')
 
-    screen_name = request.form['screen_name']
+    screen_name = str(screen_name)
     twitter = Twython(app_key, app_secret)
     timeline = twitter.get_user_timeline(screen_name=screen_name, count=200)
     statuses = [status['text'] for status in timeline]
@@ -86,7 +86,7 @@ def do():
     for i in range(20):
         final.append(g.generate(size=random.randint(7, 10)))
     
-    return jsonify({screen_name: final})
+    return jsonify({"tweets": final})
 
 
 if __name__ == '__main__':

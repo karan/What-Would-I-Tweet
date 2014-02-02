@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <title> What would I tweet?</title>
+        <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.2.10/angular.min.js"></script>
+        <script src="app.js"></script>
+    </head>
+    <body>
+        <div ng-app="TweetApp">
+            <div ng-view>
+                <form ng-submit="getTweets()">
+                    <fieldset>
+                        <input type="text" ng-model="state.screenName">
+                        <h1> {{state.screenName}} </h1>
+                        <button>Go</button>
+                    </fieldset>
+                </form>
+                <div ng-repeat="item in state.tweets">
+                    <p>{{tweet}}</p>
+                </div>
+            </div>
+        </div>
+    </body>
+</html

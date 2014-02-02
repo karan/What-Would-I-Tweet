@@ -1,9 +1,10 @@
 !!! 5
-html(lang="en")
+html(lang="en", ng-app)
     head
         title What would I tweet?
+        script(src="https://ajax.googleapis.com/ajax/libs/angularjs/1.2.10/angular.min.js")
 
     body
-        form(action="/get_tweets", method="post")
-            input(type="text", name="screen_name")
-            input(type="submit")
+        div
+            input(type="text", ng-model="screenName")
+            h1 {{screenName}}
