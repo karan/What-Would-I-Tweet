@@ -8,11 +8,10 @@
     <body>
         <div ng-app="TweetApp">
             <div ng-controller="MainCtrl">
-                    <input type="text" ng-model="screenName">
-                    <h1>{{ screenName }}</h1>
+                    <input type="text" placeholder="Enter a username" ng-model="screenName">
                     <button ng-click="getTweets(screenName)">Go</button>
                 <div ng-repeat="tweet in tweets">
-                    <p>{{ tweet.tweet }}</p>
+                    <p>--> {{ tweet.tweet }}</p>
                 </div>
             </div>
         </div>

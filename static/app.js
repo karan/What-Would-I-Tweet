@@ -15,7 +15,7 @@ TweetApp.controller('MainCtrl', ['$scope', '$http', function($scope, $http) {
         })
         .error(function(data, status, headers, config) {
             // something went wrong!!
-            console.log('whattt');
+            alert('Invalid username or protected tweets.');
         });
     }
 }]);

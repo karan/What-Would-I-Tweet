@@ -75,7 +75,7 @@ def do(screen_name):
 
     screen_name = str(screen_name)
     twitter = Twython(app_key, app_secret)
-    timeline = twitter.get_user_timeline(screen_name=screen_name, count=20)
+    timeline = twitter.get_user_timeline(screen_name=screen_name, count=100)
     statuses = [status['text'] for status in timeline]
 
     g = Generate(statuses)
