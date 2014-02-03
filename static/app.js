@@ -5,10 +5,8 @@ TweetApp.controller('MainCtrl', ['$scope', '$http', function($scope, $http) {
     $scope.tweets = [];
     
     $scope.getTweet = function (screenName) {
-        console.log(screenName + ' getting');
         if ($scope.tweets.length > 0) {
             console.log('already in list');
-            console.log($scope.tweets);
             $scope.tweet = $scope.tweets.pop();
         } else {
             console.log('not in list');
@@ -19,9 +17,7 @@ TweetApp.controller('MainCtrl', ['$scope', '$http', function($scope, $http) {
             })
             .success(function(data, status, headers, config) {
                 $scope.tweets = data['results'];
-                console.log($scope.tweets);
                 $scope.tweet = $scope.tweets.pop();
-                console.log($scope.tweets);
             })
             .error(function(data, status, headers, config) {
                 // something went wrong!!
