@@ -11,3 +11,4 @@ requests-oauthlib==0.3.2
 six==1.5.2
 twython==3.1.0
 wsgiref==0.1.2
+newrelic
