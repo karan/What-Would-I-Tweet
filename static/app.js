@@ -14,7 +14,7 @@ TweetApp.controller('MainCtrl', ['$scope', '$http', '$sce', function($scope, $ht
         if ($scope.tweets.length > 0 && screenName == $scope.copy) {
             console.log('already in list');
             $scope.tweet = $scope.tweets.pop();
-            $scope.tsrc = $sce.trustAsResourceUrl(base_url + '@' + $scope.screenName + ' would say ' + '"' + $scope.tweet.tweet + '"');
+            $scope.tsrc = $sce.trustAsResourceUrl(base_url + '.@' + $scope.screenName + ' would say ' + '"' + $scope.tweet.tweet + '"');
         } else {
             $scope.copy = screenName;
             $scope.loading = true;
