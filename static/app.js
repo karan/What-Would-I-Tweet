@@ -17,7 +17,6 @@ TweetApp.controller('MainCtrl', ['$scope', '$http', '$sce', function($scope, $ht
         } else {
             $scope.copy = screenName;
             console.log('not in list');
-            delete $http.defaults.headers.common['X-Requested-With'];
             $http({
                 method: 'GET',
                 url: 'http://localhost:5000/get_tweets/' + screenName

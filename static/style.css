@@ -47,13 +47,37 @@ h1 {
 	position: relative;
 	display: table;
 	border-collapse: separate;
-	width: 80%;
+	width: 85%;
 	margin: 10px auto;
+}
+
+.at {
+	width: 6%;
+	display: table-cell;
+	padding: 6px;
+	margin: 0px;
+	font-size: 17px;
+	font-weight: 700;
+	line-height: 1.428571429;
+	color: #555;
+	background-color: #fff;
+	background-image: none;
+	border: 1px solid #ccc;
+	border-top-left-radius: 4px;
+	border-bottom-left-radius: 4px;
+	letter-spacing: 2px;
+	-webkit-box-shadow: inset 0 1px 1px rgba(0,0,0,.075);
+	box-shadow: inset 0 1px 1px rgba(0,0,0,.075);
+	-webkit-transition: border-color ease-in-out .15s,box-shadow ease-in-out .15s;
+	transition: border-color ease-in-out .15s,box-shadow ease-in-out .15s;
+	float: left;
+	margin-bottom: 0;
 }
 
 input.username {
 	display: table-cell;
-	width: 60%;
+	width: 52%;
+	margin: 0px;
 	padding: 6px 12px;
 	font-size: 17px;
 	font-weight: 700;
@@ -62,7 +86,8 @@ input.username {
 	background-color: #fff;
 	background-image: none;
 	border: 1px solid #ccc;
-	border-radius: 4px;
+	border-top-right-radius: 4px;
+	border-bottom-right-radius: 4px;
 	letter-spacing: 2px;
 	-webkit-box-shadow: inset 0 1px 1px rgba(0,0,0,.075);
 	box-shadow: inset 0 1px 1px rgba(0,0,0,.075);
@@ -74,7 +99,8 @@ input.username {
 
 button {
 	display: table-cell;
-	width: 30%;
+	width: 27%;
+	margin: 0px;
 	padding: 6px 12px;
 	font-weight: 700;
 	font-size: 17px;
