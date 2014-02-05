@@ -1,10 +1,10 @@
 #!/usr/bin/env python
 
 import ConfigParser
-import webbrowser
 from collections import defaultdict
 import random
 import re
+import os
 
 from twython import Twython
 from flask import Flask, jsonify, make_response, request
@@ -68,11 +68,15 @@ def index():
 
 @app.route('/get_tweets/<screen_name>', methods=['GET'])
 def do(screen_name):
+    '''
     config = ConfigParser.RawConfigParser()
     config.read('settings.cfg')
     app_key = config.get('auth', 'app_key')
     app_secret = config.get('auth', 'app_secret')
+    '''
 
+    app_key = os.environ.get('APP_KEY')
+    app_secret = os.environ.get('APP_SECRET')
     screen_name = str(screen_name)
     twitter = Twython(app_key, app_secret)
     timeline = twitter.get_user_timeline(screen_name=screen_name, count=200)
