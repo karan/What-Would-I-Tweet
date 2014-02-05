@@ -18,6 +18,7 @@
                     <input type="text" placeholder="username" ng-model="screenName" class="username" autofocus required ng-keyup="$event.keyCode == 13 ? getTweet(screenName) : null">
                     <button ng-click="getTweet(screenName)">Generate</button>
                 </div>
+                <span ng-show="loading">Tweeny is working...</span>
                 <div ng-if="tweet && tweet.tweet">
                     <div class="tweet-box">{{tweet.tweet}}</br>
                         <span class="author">@{{screenName}}</span>
