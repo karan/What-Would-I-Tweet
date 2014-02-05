@@ -13,14 +13,17 @@ Usage
 
 Get your `app_key` and `app_secret` from [Twitter Dev Center](https://dev.twitter.com/apps/new).
 
-Create `settings.cfg` with the following content:
+Create environment variables.
 
-    [auth]
-    app_key=xxxxxxxxxxxxxx
-    app_secret=xxxxxxxxxxxxxxxxxxxxxxxxxx
+    $ export APP_KEY=xxxxxxxxxxxxxx
+    $ export APP_SECRET=xxxxxxxxxxxxxxxxxxxxxxxxxxxx
 
 Run the script:
 
     $ python gen.py
+
+Or if you have heroku toolkit:
+    
+    $ foreman start
 
 Open `localhost:5000` in your browser.

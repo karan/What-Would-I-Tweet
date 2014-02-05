@@ -7,7 +7,7 @@ TweetApp.controller('MainCtrl', ['$scope', '$http', '$sce', function($scope, $ht
     $scope.tsrc = '';
 
     var domain = 'tweeny.herokuapp.com/';
-    var base_url = 'https://platform.twitter.com/widgets/tweet_button.html?count=none&size=large&via=' + domain + '&text=';
+    var base_url = 'https://platform.twitter.com/widgets/tweet_button.html?count=none&size=large&text=';
     
     $scope.getTweet = function (screenName) {
         if ($scope.tweets.length > 0 && screenName == $scope.copy) {

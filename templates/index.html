@@ -15,7 +15,7 @@
             <div ng-controller="MainCtrl">
                 <div class="input-grp">
                     <span class="at">@</span>
-                    <input type="text" placeholder="username" ng-model="screenName" class="username" autofocus required>
+                    <input type="text" placeholder="username" ng-model="screenName" class="username" autofocus required ng-keyup="$event.keyCode == 13 ? getTweet(screenName) : null">
                     <button ng-click="getTweet(screenName)">Generate</button>
                 </div>
                 <div ng-if="tweet && tweet.tweet">
