@@ -2,15 +2,18 @@
 <html lang="en">
     <head>
         <title>What would I tweet?</title>
+        <link rel="stylesheet" href="http://fonts.googleapis.com/css?family=Open+Sans:400,700,800" type="text/css">
+        <link href="static/style.css" rel="stylesheet" type="text/css">
         <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.2.10/angular.min.js"></script>
         <script src="static/app.js"></script>
     </head>
     <body>
-        <div ng-app="TweetApp">
+        <div ng-app="TweetApp" class="app">
+            <h1>What would I tweet?</h1>
             <div ng-controller="MainCtrl">
-                <input type="text" placeholder="Enter a username" ng-model="screenName">
-                <button ng-click="getTweet(screenName)">Go</button>
-                <p>--> {{ tweet.tweet }}</p>
+                <input type="text" placeholder="Enter a username" ng-model="screenName" size="25">
+                <button ng-click="getTweet(screenName)">Generate</button>
+                <p>{{ tweet.tweet }}</p>
             </div>
         </div>
     </body>

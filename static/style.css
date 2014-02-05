@@ -1,0 +1,54 @@
+body {
+	background-color: #f4f4f4;
+	font-family: 'Open Sans', Helvetica, Helvetica Nue, Arial, sans-serif;
+	color: #eee;
+	font-size: 21px;
+	font-weight: 400;
+}
+
+.app {
+	display block;
+	text-align: center;
+	max-width: 520px;
+	padding: 40px;
+	background: rgba(0, 0, 0, 0.35);
+	margin: 120px auto;
+	text-align: center;
+	border-radius: 6px;
+	border-left: 1px solid rgba(0, 0, 0, 0.6);
+	border-right: 1px solid rgba(0, 0, 0, 0.6);
+	height: 100%;
+}
+
+h1 {
+	font-weight: 800;
+	color: #333;
+}
+
+input {
+	padding: 10px;
+	background: rgba(255,255,255,0.5);
+	margin: 0 0 10px 0;
+	font-size: 16px;
+	font-weight: 700;
+	letter-spacing: 2px;
+}
+
+button {
+	padding: 10px;
+	font-weight: 700;
+	font-size: 16px;
+	letter-spacing: 0.5;
+	border-radius: 5px;
+	color: #fff;
+	background-color: #428bca;
+	border-color: #357ebd;
+	white-space: nowrap;
+	vertical-align: middle;
+}
+
+button:hover {
+	color: #fff;
+	background-color: #3276b1;
+	border-color: #285e8e;
+}
