@@ -20,7 +20,6 @@ TweetApp.controller('MainCtrl', ['$scope', '$http', function($scope, $http) {
             .success(function(data, status, headers, config) {
                 $scope.tweets = data['results'];
                 $scope.tweet = $scope.tweets.pop();
-
             })
             .error(function(data, status, headers, config) {
                 // something went wrong!!

@@ -8,13 +8,22 @@
         <script src="static/app.js"></script>
     </head>
     <body>
+        <div class="bg"></div>
         <div ng-app="TweetApp" class="app">
             <h1>What would I tweet?</h1>
             <div ng-controller="MainCtrl">
-                <input type="text" placeholder="Enter a username" ng-model="screenName" size="25">
-                <button ng-click="getTweet(screenName)">Generate</button>
-                <p>{{ tweet.tweet }}</p>
+                <div class="input-grp">
+                    <input type="text" placeholder="@username" ng-model="screenName" class="username">
+                    <button ng-click="getTweet(screenName)">Generate</button>
+                </div>
+                <div ng-if="tweet && tweet.tweet">
+                    <div class="tweet-box">{{tweet.tweet}}</br>
+                        <span class="author">@{{screenName}}</span>
+                    </div>
+                </div>
             </div>
+            <!-- Add tweet this tweet button -->
         </div>
+        <!-- Add credits -->
     </body>
 </html>

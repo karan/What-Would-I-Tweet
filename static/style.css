@@ -6,41 +6,83 @@ body {
 	font-weight: 400;
 }
 
+.bg {
+	top: 0;
+	right: 0;
+	bottom: 0;
+	left: 0;
+	content: "";
+	z-index: -1;
+	position: absolute;
+	position: fixed;
+	height: 100%;
+	width: 100%;
+	/*http://www.flickr.com/photos/walkingsf/5912169471/sizes/l/*/
+	background-image: url("../static/bg2.jpg");
+	-webkit-background-size: cover;
+	-moz-background-size: cover;
+	-o-background-size: cover;
+	background-size: cover;
+}
+
 .app {
 	display block;
 	text-align: center;
 	max-width: 520px;
 	padding: 40px;
-	background: rgba(0, 0, 0, 0.35);
+	background: rgba(255, 255, 255, 0.35);
 	margin: 120px auto;
 	text-align: center;
 	border-radius: 6px;
-	border-left: 1px solid rgba(0, 0, 0, 0.6);
-	border-right: 1px solid rgba(0, 0, 0, 0.6);
 	height: 100%;
 }
 
 h1 {
 	font-weight: 800;
-	color: #333;
+	color: #eee;
+	font-size: 48px;
+	text-shadow: 2px 2px 3px #000;
 }
 
-input {
-	padding: 10px;
-	background: rgba(255,255,255,0.5);
-	margin: 0 0 10px 0;
-	font-size: 16px;
+.input-grp {
+	position: relative;
+	display: table;
+	border-collapse: separate;
+	width: 80%;
+	margin: 10px auto;
+}
+
+input.username {
+	display: table-cell;
+	width: 60%;
+	padding: 6px 12px;
+	font-size: 17px;
 	font-weight: 700;
+	line-height: 1.428571429;
+	color: #555;
+	background-color: #fff;
+	background-image: none;
+	border: 1px solid #ccc;
+	border-radius: 4px;
 	letter-spacing: 2px;
+	-webkit-box-shadow: inset 0 1px 1px rgba(0,0,0,.075);
+	box-shadow: inset 0 1px 1px rgba(0,0,0,.075);
+	-webkit-transition: border-color ease-in-out .15s,box-shadow ease-in-out .15s;
+	transition: border-color ease-in-out .15s,box-shadow ease-in-out .15s;
+	float: left;
+	margin-bottom: 0;
 }
 
 button {
-	padding: 10px;
+	display: table-cell;
+	width: 30%;
+	padding: 6px 12px;
 	font-weight: 700;
-	font-size: 16px;
-	letter-spacing: 0.5;
+	font-size: 17px;
+	line-height: 1.428571429;
 	border-radius: 5px;
 	color: #fff;
+	letter-spacing: 2px;
 	background-color: #428bca;
 	border-color: #357ebd;
 	white-space: nowrap;
@@ -51,4 +93,25 @@ button:hover {
 	color: #fff;
 	background-color: #3276b1;
 	border-color: #285e8e;
+}
+
+.tweet-box {
+	background-color: #fff;
+	color: #333;
+	display: block;
+	max-width: 99%;
+	min-width: 220px;
+	padding: 10px;
+	border-radius: 5px;
+	margin: 50px 0px 30px 0px;
+	box-shadow: rgba(0, 0, 0, 0.2) 0px 1px 3px;
+	position: static;
+	visibility: visible;
+	font-size: 120%;
+}
+
+.author {
+	font-style: italic;
+	font-size: 70%;
+	color: rgba(0, 0, 0, 0.5);
 }
