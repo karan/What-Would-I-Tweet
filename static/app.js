@@ -13,7 +13,7 @@ TweetApp.controller('MainCtrl', ['$scope', '$http', '$sce', function($scope, $ht
         if ($scope.tweets.length > 0 && screenName == $scope.copy) {
             console.log('already in list');
             $scope.tweet = $scope.tweets.pop();
-            $scope.tsrc = $sce.trustAsResourceUrl(base_url + '"' + $scope.tweet.tweet +'"');
+            $scope.tsrc = $sce.trustAsResourceUrl(base_url + '@' + $scope.screenName + ' would say ' + '"' + $scope.tweet.tweet + '"');
         } else {
             $scope.copy = screenName;
             console.log('not in list');
@@ -24,7 +24,7 @@ TweetApp.controller('MainCtrl', ['$scope', '$http', '$sce', function($scope, $ht
             .success(function(data, status, headers, config) {
                 $scope.tweets = data['results'];
                 $scope.tweet = $scope.tweets.pop();
-                $scope.tsrc = $sce.trustAsResourceUrl(base_url + '"' + $scope.tweet.tweet +'"');
+                $scope.tsrc = $sce.trustAsResourceUrl(base_url + '@' + $scope.screenName + ' would say ' + '"' + $scope.tweet.tweet + '"');
             })
             .error(function(data, status, headers, config) {
                 // something went wrong!!
