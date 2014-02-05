@@ -31,7 +31,7 @@ class Generate(object):
         for status in statuses: # for each status
             for word in status.split(): # for each word
                 if not bool(ignore_pattern.search(word)):
-                    words.append(word)
+                    words.append(word.lower())
         return words
     
     def triples(self):
@@ -75,7 +75,7 @@ def do(screen_name):
 
     screen_name = str(screen_name)
     twitter = Twython(app_key, app_secret)
-    timeline = twitter.get_user_timeline(screen_name=screen_name, count=100)
+    timeline = twitter.get_user_timeline(screen_name=screen_name, count=200)
     statuses = [status['text'] for status in timeline]
 
     g = Generate(statuses)
