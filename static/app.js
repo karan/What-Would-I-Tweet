@@ -6,7 +6,7 @@ TweetApp.controller('MainCtrl', ['$scope', '$http', '$sce', function($scope, $ht
     $scope.copy = '';
     $scope.tsrc = '';
 
-    var domain = 'x.goel.im';
+    var domain = 'tweeny.herokuapp.com/';
     var base_url = 'https://platform.twitter.com/widgets/tweet_button.html?count=none&size=large&via=' + domain + '&text=';
     
     $scope.getTweet = function (screenName) {
@@ -19,7 +19,7 @@ TweetApp.controller('MainCtrl', ['$scope', '$http', '$sce', function($scope, $ht
             console.log('not in list');
             $http({
                 method: 'GET',
-                url: 'http://localhost:5000/get_tweets/' + screenName
+                url: '/get_tweets/' + screenName
             })
             .success(function(data, status, headers, config) {
                 $scope.tweets = data['results'];
