@@ -17,7 +17,6 @@ body {
 	position: fixed;
 	height: 100%;
 	width: 100%;
-	/*http://www.flickr.com/photos/walkingsf/5912169471/sizes/l/*/
 	background-image: url("../static/bg2.jpg");
 	-webkit-background-size: cover;
 	-moz-background-size: cover;
@@ -114,4 +113,35 @@ button:hover {
 	font-style: italic;
 	font-size: 70%;
 	color: rgba(0, 0, 0, 0.5);
+}
+
+.info {
+	display block;
+	text-align: center;
+	max-width: 580px;
+	padding: 10px;
+	background: rgba(255, 255, 255, 0.15);
+	margin: 180px auto 40px auto;
+	text-align: center;
+	border-radius: 6px;
+	height: 100%;
+	font-size: 15px;
+}
+
+.footer, .footer p {
+	text-align: center;
+	margin: 0px auto;
+	max-width: 570px;
+	padding-right: 15px;
+	padding-left: 15px;
+	color: rgba(255, 255, 255, 0.5);
+	font-size: 15px;
+}
+
+.footer a {
+	color: rgba(255, 255, 255, 0.5);
+}
+
+.footer a:hover {
+	color: rgba(255, 255, 255, 0.9);
 }

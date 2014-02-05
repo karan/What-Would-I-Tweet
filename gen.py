@@ -83,7 +83,7 @@ def do(screen_name):
     final = []
 
     for i in range(20):
-        final.append({'tweet': g.generate(size=random.randint(7, 10))})
+        final.append({'tweet': g.generate(size=random.randint(4, 15))})
     
     return jsonify(results=final)
 
