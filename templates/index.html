@@ -6,6 +6,7 @@
         <link href="static/style.css" rel="stylesheet" type="text/css">
         <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.2.10/angular.min.js"></script>
         <script src="static/app.js"></script>
+        <script src="http://platform.twitter.com/widgets.js"></script>
     </head>
     <body>
         <div class="bg"></div>
@@ -13,16 +14,16 @@
             <h1>What would I tweet?</h1>
             <div ng-controller="MainCtrl">
                 <div class="input-grp">
-                    <input type="text" placeholder="@username" ng-model="screenName" class="username">
+                    <input type="text" placeholder="@username" ng-model="screenName" class="username" autofocus required>
                     <button ng-click="getTweet(screenName)">Generate</button>
                 </div>
                 <div ng-if="tweet && tweet.tweet">
                     <div class="tweet-box">{{tweet.tweet}}</br>
                         <span class="author">@{{screenName}}</span>
                     </div>
+                    <iframe ng-src="{{tsrc}}" width="100px" height="30px" frameborder="0"></iframe>
                 </div>
             </div>
-            <!-- Add tweet this tweet button -->
         </div>
         <!-- Add credits -->
     </body>
