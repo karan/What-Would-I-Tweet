@@ -17,7 +17,7 @@ body {
 	position: fixed;
 	height: 100%;
 	width: 100%;
-	background-image: url("../static/bg2.jpg");
+	background-image: url("../static/bg.jpg");
 	-webkit-background-size: cover;
 	-moz-background-size: cover;
 	-o-background-size: cover;
