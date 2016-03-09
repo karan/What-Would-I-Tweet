@@ -6,7 +6,6 @@
         <link href="static/style.css" rel="stylesheet" type="text/css">
         <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.2.10/angular.min.js"></script>
         <script src="static/app.js"></script>
-        <script src="http://platform.twitter.com/widgets.js"></script>
     </head>
     <body>
         <div class="bg"></div>
@@ -19,11 +18,12 @@
                     <button ng-click="getTweet(screenName)">Generate</button>
                 </div>
                 <span ng-show="loading">Tweeny is working...</span>
-                <div ng-if="tweet && tweet.tweet">
-                    <div class="tweet-box">{{tweet.tweet}}</br>
-                        <span class="author">@{{screenName}}</span>
+                <div ng-if="tweet">
+                    <div class="tweet-box">
+                        <span class="author">@{{screenName}} would say:</span>
+                        <span class="tweet">{{tweet}}</span>
+                        <iframe ng-src="{{tsrc}}" width="80px" height="30px" frameborder="0"></iframe>
                     </div>
-                    <iframe ng-src="{{tsrc}}" width="100px" height="30px" frameborder="0"></iframe>
                 </div>
             </div>
         </div>
@@ -32,7 +32,8 @@
             <p><b>What would I tweet</b> automatically generates tweets for you! It trains a <b>Markov bot</b> based on <b>bigram probabilities</b> derived from your tweet history. The results are often <b>hilarious</b> and sometimes make no sense at all.</p>
         </div>
         <div class="footer">
-            <p><a href="https://github.com/karan/What-Would-I-Tweet">Open source project</a> by <a href="http://twitter.com/TheKaranGoel">Karan Goel</a>. Image by <a href="http://www.flickr.com/photos/walkingsf/5912169471/">Eric Fischer</a>. Inspired by <a href="http://what-would-i-say.com/">what would i say?</a></p>
+            <p>A thing by <a href="http://twitter.com/KaranGoel">Karan Goel</a>. Image by <a href="https://flic.kr/p/a1rq1p/">Eric Fischer</a>.</p>
         </div>
     </body>
 </html>
+<script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+'://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js,fjs);}}(document, 'script', 'twitter-wjs');</script>
